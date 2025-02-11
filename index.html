@@ -58,18 +58,33 @@
             const projectPrice = document.getElementById('projectPrice').value;
 
             // Send email with the form data
-            emailjs.send("service_cdso723","template_xtyt1r9"); {
-                projectTitle: projectTitle,
-                projectDescription: projectDescription,
-                projectPrice: projectPrice
-            }).then(function (response) {
-                alert('Project submitted successfully!');
-                document.getElementById('submitForm').reset(); // Reset the form
-            }, function (error) {
-                alert('Failed to submit the project. Please try again later.');
-                console.log(error);
-            });
-        });
+           // Initialize EmailJS
+    emailjs.init('vPFty3bGQ1ScBAb6-');  // Replace 'your_user_id' with your EmailJS user ID
+
+// Form submission handler
+    document.getElementById('submitForm').addEventListener('submit', function (event) {
+    event.preventDefault(); // Prevent the form from reloading the page
+
+    // Collect form data
+    const projectTitle = document.getElementById('projectTitle').value;
+    const projectDescription = document.getElementById('projectDescription').value;
+    const projectPrice = document.getElementById('projectPrice').value;
+
+    // Send email with the form data
+    emailjs.send('service_cdso723', 'template_xtyt1r9', {
+        to_name: 'PCBuildX Team',  // You can replace this with the name of the user who submits the project
+        projectTitle: projectTitle,
+        projectDescription: projectDescription,
+        projectPrice: projectPrice
+    }).then(function (response) {
+        alert('Project submitted successfully!');
+        document.getElementById('submitForm').reset(); // Reset the form
+    }, function (error) {
+        alert('Failed to submit the project. Please try again later.');
+        console.log(error);
+    });
+});
+
     </script>
 
 </body>
