@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCBuildX - Marketplace</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>PCBuildX Nodes Marketplace</h1>
+        <p>Explore the latest projects and nodes submitted by users.</p>
+    </header>
+
+    <section class="nodes">
+        <h2>Available Nodes</h2>
+
+        <!-- Placeholder for dynamic content -->
+        <div id="nodes-list"></div>
+    </section>
+
+    <!-- Submission Form Section -->
+    <section class="submit-project">
+        <h2>Submit Your Project</h2>
+        <form id="submitForm">
+            <label for="projectTitle">Project Title:</label>
+            <input type="text" id="projectTitle" name="projectTitle" required>
+
+            <label for="projectDescription">Project Description:</label>
+            <textarea id="projectDescription" name="projectDescription" required></textarea>
+
+            <label for="projectPrice">Price:</label>
+            <input type="text" id="projectPrice" name="projectPrice" required>
+
+            <button type="submit">Submit Project</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 PCBuildX Marketplace. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        // Initialize EmailJS
+        emailjs.init('your_user_id');  // Replace 'your_user_id' with your EmailJS user ID
+
+        // Form submission handler
+        document.getElementById('submitForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent the form from reloading the page
+
+            // Collect form data
+            const projectTitle = document.getElementById('projectTitle').value;
+            const projectDescription = document.getElementById('projectDescription').value;
+            const projectPrice = document.getElementById('projectPrice').value;
+
+            // Send email with the form data
+            emailjs.send("service_cdso723","template_xtyt1r9"); {
+                projectTitle: projectTitle,
+                projectDescription: projectDescription,
+                projectPrice: projectPrice
+            }).then(function (response) {
+                alert('Project submitted successfully!');
+                document.getElementById('submitForm').reset(); // Reset the form
+            }, function (error) {
+                alert('Failed to submit the project. Please try again later.');
+                console.log(error);
+            });
+        });
+    </script>
+
+</body>
+
+</html>
